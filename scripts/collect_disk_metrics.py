@@ -181,13 +181,14 @@ def get_disk_status(device: str) -> str:
         str: Статус диска ('OK', 'FAILED', 'Unknown').
     """
     try:
-        output = subprocess.check_output(['sudo', 'smartctl', '-H', device],
+        output = subprocess.check_output(['smartctl', '-H', device],
                                          stderr=subprocess.STDOUT).decode()
         for line in output.split('\n'):
             if 'SMART overall-health self-assessment test result' in line:
                 status = line.split(':')[-1].strip()
                 return status
-    except Exception:
+    except Exception as e:
+        logging.error("Ошибка при получении очереди I/O: %s", str(e))
         return 'Unknown'
 
 
