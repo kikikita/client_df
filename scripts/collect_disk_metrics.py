@@ -188,7 +188,7 @@ def get_disk_status(device: str) -> str:
                 status = line.split(':')[-1].strip()
                 return status
     except Exception as e:
-        logging.error("Ошибка при получении очереди I/O: %s", str(e))
+        logging.error("Ошибка при получении DiskStatus: %s", str(e))
         return 'Unknown'
 
 
