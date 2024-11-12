@@ -1,5 +1,10 @@
+# Cron файл для настройки регулярного сбора данных
 SHELL=/bin/bash
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+PYTHONPATH=/src
 
-# Запуск collect_disk_metrics.py раз в сутки
-0 * * * * /usr/bin/python3 /src/scripts/collect_disk_metrics.py
+# Запуск collect_disk_metrics.py раз в час
+0 * * * * /usr/local/bin/python3 /src/scripts/collect_disk_metrics.py >> /src/logs/cron.log 2>&1
+
+# Запуск collect_disk_metrics.py раз в минуту
+#* * * * * /usr/local/bin/python3 /src/scripts/collect_disk_metrics.py >> /src/logs/cron.log 2>&1

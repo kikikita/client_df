@@ -11,6 +11,9 @@ COPY ./requirements.txt /requirements.txt
 RUN python -m pip install --upgrade pip && \
     pip install -r /requirements.txt
 
+# Создаем директорию при сборке образа
+RUN mkdir -p /src/data /src/logs
+
 # Устанавливаем рабочую директорию
 WORKDIR /src
 
@@ -33,5 +36,4 @@ RUN chmod 0644 /etc/cron.d/collect_metrics_cron
 RUN crontab /etc/cron.d/collect_metrics_cron
 
 # Запускаем cron (чтобы контейнер не завершался)
-CMD ["cron", "-f"]
-
+CMD ["sh", "-c", "pip install -r /requirements.txt && cron -f"]

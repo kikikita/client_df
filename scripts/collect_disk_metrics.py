@@ -10,12 +10,18 @@ import re
 from client import send_metrics_to_server
 
 
-# Директория, где находится текущий скрипт
-script_dir = os.path.dirname(os.path.abspath(__file__))
+# Директория на уровень выше текущей
+parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+data_dir = os.path.join(parent_dir, 'data')
+logs_dir = os.path.join(parent_dir, 'logs')
+
+# Проверка, существует ли директория, если нет - создание
+os.makedirs(data_dir, exist_ok=True)
+os.makedirs(logs_dir, exist_ok=True)
 
 # Создание путей к файлам CSV и логов
-csv_file = os.path.join(script_dir, "disk_metrics.csv")
-log_file = os.path.join(script_dir, "disk_metrics_py.log")
+csv_file = os.path.join(data_dir, "disk_metrics.csv")
+log_file = os.path.join(logs_dir, "disk_metrics_py.log")
 
 # Настройка логирования
 logging.basicConfig(
