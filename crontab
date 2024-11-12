@@ -1,0 +1,5 @@
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+# Запуск collect_disk_metrics.py раз в сутки
+0 * * * * /usr/bin/python3 /src/scripts/collect_disk_metrics.py
