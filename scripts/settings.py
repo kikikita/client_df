@@ -6,6 +6,7 @@ from dataclasses import dataclass
 @dataclass
 class Client:
     api_url: str
+    user_id: int
 
 
 def get_settings(path: str):
@@ -16,6 +17,7 @@ def get_settings(path: str):
 
     return Client(
             api_url=env.str("API_URL"),
+            user_id=env.int("USER_ID"),
         )
 
 

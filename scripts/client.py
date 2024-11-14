@@ -16,6 +16,7 @@ def send_metrics_to_server(metrics: Dict[str, float]) -> None:
     """
     try:
         url = settings.api_url + 'submit-metrics'
+        metrics['user_id'] = settings.user_id
         response = requests.post(url, json=metrics)
         if response.status_code == 200:
             logging.info("Метрики успешно отправлены на сервер")
